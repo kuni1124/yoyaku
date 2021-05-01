@@ -114,14 +114,35 @@
 
         </style>
     </head>
-    <body>
+  
+ <body>
  @extends('layouts.app')
 
 @section('content')
-              <div class="container">
+        
+          <div class="container">
               <div class="image">
                 <img src="image/main.jpeg" alt="文字の代替">
                </div>
+            
+               
+             
+               
+               <div class="logo">
+                 <p>{!! link_to_route('carender-index', '予約する', [], ['class' => 'nav-link1'])!!}</p>
+                 
+               </div>
+               <div class="logo2">
+                 
+                 <p>{!! link_to_route('search', '予約確認', [], ['class' => 'nav-link2'])!!}</p>
+               </div>
+               <div class="yoyaku_coment">
+                 
+               </div>
+              </div>           
+         @if (!Auth::check())  
+              <div class="container">
+              
             
                
              
@@ -138,12 +159,14 @@
                  
                </div>
               </div>
+           @endif   
+              
 @endsection
-   
-           
+　   
 
                 
           
        
     </body>
+    
 </html>

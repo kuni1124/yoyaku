@@ -16,7 +16,7 @@
             {!! Form::close() !!}
         </div>
         <div class="col-sm-8">
-            
+        <button onclick="history.back()">戻る</button>    
             
         </div>
     </div>

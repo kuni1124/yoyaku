@@ -15,6 +15,7 @@
 	<input type="submit" value="時間へ" class="btn btn-primary btn-b" >
 </div>
 </form>
+<button onclick="history.back()">戻る</button>    
 </div>
 @endsection
 <style>

@@ -30,6 +30,7 @@
              </div>
              @endif
              <input type="submit" value="予約する" class="btn btn-primary">  
+             
          </div>
      </div>
 </div>

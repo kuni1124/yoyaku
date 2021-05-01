@@ -10,7 +10,7 @@
    
 </div>
 
-{!! link_to_route('welcome', 'HOME', [], ['class' => 'nav-link']) !!}
+{!! link_to_route('/', 'HOME', [], ['class' => 'nav-link']) !!}
 
 @endsection
 <style>

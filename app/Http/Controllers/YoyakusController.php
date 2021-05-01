@@ -46,8 +46,8 @@ class YoyakusController extends Controller
        $yoyaku->date = $request->date;
        
        if($user){
-          $yoyaku->tel = $request->tel;
-          $yoyaku->name = $request->name;
+          $yoyaku->tel = $user->tel;
+          $yoyaku->name = $user->name;
           $yoyaku->user_id = $user->id;
        }else{
        $yoyaku->tel = $request->tel;
@@ -55,7 +55,9 @@ class YoyakusController extends Controller
        }
        $yoyaku->save();
        
-       return redirect('tuuti')->with('flash_message', 'STORE!');
+       return view('tuuti.index', [
+            
+        ]);
        
     }
 
