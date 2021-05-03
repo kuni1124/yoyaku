@@ -12,14 +12,22 @@
             <ul class="navbar-nav">
                 @if (Auth::check())
                     {{-- ユーザ一覧ページへのリンク --}}
-             
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}</a>
-                        <ul class="dropdown-menu dropdown-menu-right">
+                       <div class="staff">
+                          <p>{!! link_to_route('staff-index', 'スタッフ画面へ', [], ['class' => 'nav-link2'])!!}</p> 
+                       <div class="user-name">
+                          <p>{{ Auth::user()->name }}</p>
+                        </div>
                             {{-- ログアウトへのリンク --}}
-                            <li class="dropdown-item">{!! link_to_route('logout.get', 'Logout') !!}</li>
-                        </ul>
-                    </li>
+                          <p>{!! link_to_route('logout.get', 'Logout',[], ['class' => 'nav-link2']) !!}</p>
+                      </div> 
+                    
                 @else
+                    <div class="logo">
+                         <p>{!! link_to_route('carender-index', '予約する', [], ['class' => 'nav-link1'])!!}</p>
+                    </div>
+                     <div class="logo2"> 
+                         <p>{!! link_to_route('search', '予約確認', [], ['class' => 'nav-link1'])!!}</p>
+                     </div>
                     {{-- ユーザ登録ページへのリンク --}}
                     <li class="nav-item">{!! link_to_route('signup.get', 'Signup', [], ['class' => 'nav-link']) !!}</li>
                     {{-- ログインページへのリンク --}}
@@ -29,3 +37,37 @@
         </div>
     </nav>
 </header>
+<style>
+
+.nav-link2{
+    color:white;
+    width:50px;
+    margin-right:30px;
+}
+.staff {
+    color:white;
+    display:flex;
+    margin-top:5%
+}
+.user-name{
+    margin-right:30px;
+}
+
+.nav-link1{
+    color:white;
+}
+
+.logo p{
+    padding-top:10%;
+    margin-right:5px;
+    width:80px;
+    color:white;
+}
+
+.logo2 p{
+    margin-top:10%;
+    margin-right:5px;
+    width:80px;
+    color:white;
+}
+</style>

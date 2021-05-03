@@ -17,6 +17,7 @@ class WelcomeController extends Controller
             
             return view('welcome', $user);  
         }else{
+            
             return view('welcome');
         }
 
