@@ -27,7 +27,7 @@ class YoyakusController extends Controller
 
     public function create(Request $request)
     { 
-        $today = new Carbon('now');
+        $today = new Carbon('yesterday');
         $nextday = new Carbon('last day of next month');
         $yoyaku = new Yoyaku;
         if($request->date == ""){
