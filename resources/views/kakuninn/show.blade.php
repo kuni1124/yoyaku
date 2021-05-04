@@ -1,38 +1,79 @@
+@extends('layouts.app')
+
+@section('content')
 <div class="container">
-               
+         
 　　　　　　　　　　　　　   @if (Auth::check())
                                  @foreach($yoyakus as $yoyaku)
                                     <div class="row py-2 border-bottom text-center">
                                        <div class="col-sm-4">
-                                           <a href="">{{ $yoyaku->date }}</a>
+                                           <p>{{ $yoyaku->date }}</p>
                                        </div>
                                        <div class="col-sm-4">
                                           {{ $yoyaku->time }}時に予約されています。
                                        </div>
+                                       <div class="col-sm-4">
+                                         {!! Form::model($yoyaku, ['route' => ['yoyaku-delete', $yoyaku->id ], 'method' => 'delete']) !!}
+                                         {!! Form::submit('予約取り消し', ['class' => 'btn btn-danger']) !!}
+                                         {!! Form::close() !!}
+                                        </div>
                                     </div>
-                                    <td> {!! Form::model($yoyaku, ['route' => ['yoyaku-delete', $yoyaku->id ], 'method' => 'delete']) !!}
-                                         {!! Form::submit('削除', ['class' => 'btn btn-danger']) !!}
-                                         {!! Form::close() !!}</td>
+                                        
                                  @endforeach
                                  
                          @endif 
 
-                                 
+                         @if (!Auth::check())     
                                 @foreach($data as $item)
                                     <div class="row py-2 border-bottom text-center">
                                        <div class="col-sm-4">
-                                           <a href="">{{ $item->date }}</a>
-                                    </div>
+                                           <p>{{ $item->date }}</p>
+                                      </div>
                                       <div class="col-sm-4">
                                           {{ $item->time }}時に予約されています。
                                       </div>
+                                        <div class="col-sm-4">
+                                         {!! Form::model($item, ['route' => ['yoyaku-delete', $item->id ], 'method' => 'delete']) !!}
+                                         {!! Form::submit('予約取り消し', ['class' => 'btn btn-danger']) !!}
+                                         {!! Form::close() !!}
+                                        </div>
                                     </div>
-                                    <td> {!! Form::model($item, ['route' => ['yoyaku-delete', $item->id ], 'method' => 'delete']) !!}
-                                         {!! Form::submit('削除', ['class' => 'btn btn-danger']) !!}
-                                         {!! Form::close() !!}</td>
+                                     
                                 @endforeach
-                        <button onclick="history.back()">戻る</button>    
-                    {{ $data->appends(request()->input())->render('pagination::bootstrap-4') }}
+                          @endif 
+                        <button onclick="history.back()" class="return btn-primary">戻る</button> 
+                       
                     
                     
             </div>
+@endsection
+<style>
+.container{
+    background-image: url("../image/istockphoto-826389662-612x612.jpeg");
+   
+    background-size:cover;
+    width:125%;                        /* 画像のサイズを指定    */
+    height:100%;                                         /* 横幅のサイズを指定    */
+        
+    
+}
+.row{
+    font-size:160%;
+}
+
+.return{
+    margin-top:5%;
+    margin-left:50%;
+    width:10%;
+    height:5%;
+}
+@media screen and (max-width: 768px) {
+/* 768pxまでの幅の場合に適応される */
+
+.return{
+    margin-top:15%!important;
+    width:100px!important;
+    margin-left:120px!important;
+}
+}
+</style>

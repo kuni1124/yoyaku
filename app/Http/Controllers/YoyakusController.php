@@ -14,9 +14,10 @@ class YoyakusController extends Controller
     {
 
         $yoyakus= Yoyaku::all();
-        
+        $user = Auth::user();
         return view('yoyakus.index', [
                'yoyakus'=>$yoyakus,
+               'user'=>$user,
             ]);
         
     }
@@ -26,7 +27,15 @@ class YoyakusController extends Controller
 
     public function create(Request $request)
     { 
-        $yoyaku = new Yoyaku; 
+        $today = new Carbon('now');
+        $nextday = new Carbon('last day of next month');
+        $yoyaku = new Yoyaku;
+        if($request->date == ""){
+            return view('error.date');
+        } 
+        if($today>$request->date or $nextday<$request->date){
+            return view('error.date');
+        }
         $sumitimes = Yoyaku::where('date','=',$request->date)->get()->pluck('time');
         
         
@@ -38,7 +47,7 @@ class YoyakusController extends Controller
     }
     
     public function store(Request $request)
-    {  
+    { 
        $user = Auth::user();
        $yoyaku = new Yoyaku;
        $yoyaku->id = $request->id;
@@ -46,12 +55,14 @@ class YoyakusController extends Controller
        $yoyaku->date = $request->date;
        
        if($user){
-          $yoyaku->tel = $user->tel;
-          $yoyaku->name = $user->name;
-          $yoyaku->user_id = $user->id;
+             $yoyaku->tel = $user->tel;
+             $yoyaku->name = $user->name;
+             $yoyaku->user_id = $user->id;
+       }elseif($request->time == "" or $request->tel == "" or $request->name == ""){
+            return view('error.time');
        }else{
-       $yoyaku->tel = $request->tel;
-       $yoyaku->name = $request->name;
+             $yoyaku->tel = $request->tel;
+             $yoyaku->name = $request->name;
        }
        $yoyaku->save();
        
@@ -60,7 +71,17 @@ class YoyakusController extends Controller
         ]);
        
     }
-
+    
+    public function destroy($id)
+    {    
+         $yoyaku = Yoyaku::findOrFail($id);
+          
+         $yoyaku->delete();
+         return view('tuuti.index2', [
+            
+        ]);
+        
+    }
     // putまたはpatchでmessages/（任意のid）にアクセスされた場合の「更新処理」
     public function update(Request $request, $id)
     {
@@ -75,16 +96,7 @@ class YoyakusController extends Controller
         // return redirect('/randam-index')->with('flash_message', 'PUT!');
     }
 
-    public function destroy($id)
-    {    
-         $yoyaku = Yoyaku::findOrFail($id);
-          
-         $yoyaku->delete();
-         return view('tuuti.index2', [
-            
-        ]);
-        
-    }
+    
 
 
     public function update3(Request $request, $id)

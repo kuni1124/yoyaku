@@ -30,7 +30,9 @@ Route::get('search', 'SearchController@show')->name('search');
 Route::get('staff.index', 'StaffController@index')->name('staff-index');
 Route::get('staff.show', 'StaffController@show')->name('staff-show');
 Route::get('staff.delete', 'StaffController@destroy')->name('staff-delete');
-Route::get('/staff.delete/{id}', 'StaffController@destroy2')->name('staff-delete2');
+Route::delete('/staff.delete/{id}', 'StaffController@destroy2')->name('staff-delete2');
+Route::get('/staff.edit/{id}', 'StaffController@edit')->name('staff-edit');
+Route::post('/staff.post/{id}', 'StaffController@store')->name('staff-store');
 
 
 Route::get('tuuti', 'TuutiController@index')->name('tuuti');

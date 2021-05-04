@@ -4,6 +4,7 @@
 
 
 
+
 <div class="form">
 
 	<h2>予約を取り消しました。<h2>
@@ -14,9 +15,11 @@
 
 @endsection
 <style>
+
 .form h2{
-	margin-top:15%;
-	margin-left:30%;
+	position:absolute;
+    top:25%;
+    left:40%;
 }
 .form h3{
     margin-left:15%;

@@ -1,33 +1,77 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-               
-　　　　　　　　　　　　　  
-                                 @foreach($yoyakus as $yoyaku)
-                                    <div class="staff">
+<div class="aaa">
+                                 @foreach($users as $user) 
+                                    <div class="row py-2 border-bottom text-center">
+                                       <div class="col-sm-3">
+                                           <p>{{ $user->name }}</p>
+                                       </div>
+                                       <div class="col-sm-3">
+                                          {{ $user->tel }}
+                                       </div>
                                        
-                                         <h2>名前:{{ $yoyaku->name }}</h2>  
-                                         <h2>電話:{{ $yoyaku->tel }}</h2>
-                                         <h2>日にち:{{ $yoyaku->date }}</h2>
-                                         <h2>時間:{{ $yoyaku->time }}</h2>
-                                         <h2>前回内容:{{ $yoyaku->text }}</h2>
+                                       <div class="col-sm-4">
+                                          {{ $user->text  }}
+                                       </div>
+                                       <div class="col-sm-1">
+                                         {!! Form::model($user, ['route' => ['staff-edit', $user->id ], 'method' => 'get']) !!}
+                                         {!! Form::submit('変更', ['class' => 'btn btn-primary']) !!}
+                                         {!! Form::close() !!}
+                                        </div>
+                                       <div class="col-sm-1">
+                                         {!! Form::model($user, ['route' => ['staff-delete2', $user->id ], 'method' => 'delete']) !!}
+                                         {!! Form::submit('削除', ['class' => 'btn btn-danger']) !!}
+                                         {!! Form::close() !!}
+                                        </div>
                                       
                                     </div>
-                                    <td> {!! Form::model($yoyaku, ['route' => ['staff-delete2', $yoyaku->id ], 'method' => 'delete']) !!}
-                                         {!! Form::submit('削除', ['class' => 'btn btn-danger']) !!}
-                                         {!! Form::close() !!}</td>
+                                        
                                  @endforeach
-                                    <p>{!! link_to_route('staff-show', '今日までの予約を削除する', [], ['class' => 'nav-link1'])!!}</p>
-                                    <button onclick="history.back()">戻る</button>    
-                                    <p>{!! link_to_route('staff-delete', '会員情報', [], ['class' => 'nav-link1'])!!}</p>
+　　　　　　　　　　　　　        
+                                 <div class="modo">
+                                    <button onclick="history.back()" class="btn8 btn-primary">戻る</button>    
+                                 </div>
                     
                     
 </div>
 @endsection
 <style>
-.staff h2{
-    font-size:150%;
+.aaa{
+   background-image: url("../image/istockphoto-826389662-612x612.jpeg");
+   
+    background-size:cover;
+    width:125%;                        /* 画像のサイズを指定    */
+    height:100%;                                         /* 横幅のサイズを指定    */
+    
+}
+.row {
+  font-size:150%;
+}
+.btn8{
+   
+   width:8%;
+   height:6%;
+   margin-top:10%;
+   margin-left:30%;
+}
+@media screen and (max-width: 768px) {
+.aaa{
+     width:100%;                              /* 横幅のサイズを指定    */
+     
+    
+}                                          /* 横幅のサイズを指定    */
+.btn{
+   margin-top:5%;
+}
+.modo{
+   margin-left:17%;
+}
+.btn8{
+   width:20%;
+   
+   
+}
 }
 
 </style>
