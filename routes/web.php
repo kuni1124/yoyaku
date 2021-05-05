@@ -22,12 +22,17 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 Route::get('carender', 'YoyakusController@index')->name('carender-index');
 Route::get('carender-create', 'YoyakusController@create')->name('carender-create');
 Route::post('yoyaku.store', 'YoyakusController@store')->name('yoyaku.store');
+Route::post('yoyaku.update', 'YoyakusController@update')->name('yoyaku.update');
 Route::delete('/yoyaku.delete/{id}', 'YoyakusController@destroy')->name('yoyaku-delete');
+Route::get('/yoyaku.edit/{id}', 'YoyakusController@edit')->name('yoyaku-edit');
+Route::post('/yoyaku.editb/{id}', 'YoyakusController@editb')->name('yoyaku-editb');
+
 
 Route::get('kakuninn.index', 'SearchController@index')->name('kakuninn-index');
 Route::get('search', 'SearchController@show')->name('search');
 
-Route::get('staff.index', 'StaffController@index')->name('staff-index');
+
+Route::match(['get', 'post'],'staff.index', 'StaffController@index')->name('staff-index');
 Route::get('staff.show', 'StaffController@show')->name('staff-show');
 Route::get('staff.delete', 'StaffController@destroy')->name('staff-delete');
 Route::delete('/staff.delete/{id}', 'StaffController@destroy2')->name('staff-delete2');

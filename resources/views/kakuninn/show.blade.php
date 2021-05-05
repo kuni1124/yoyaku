@@ -12,9 +12,14 @@
                                        <div class="col-sm-4">
                                           {{ $yoyaku->time }}時に予約されています。
                                        </div>
-                                       <div class="col-sm-4">
+                                       <div class="col-sm-2">
                                          {!! Form::model($yoyaku, ['route' => ['yoyaku-delete', $yoyaku->id ], 'method' => 'delete']) !!}
                                          {!! Form::submit('予約取り消し', ['class' => 'btn btn-danger']) !!}
+                                         {!! Form::close() !!}
+                                        </div>
+                                        <div class="col-sm-2">
+                                         {!! Form::model($yoyaku, ['route' => ['yoyaku-eidt', $yoyaku->id ], 'method' => 'get']) !!}
+                                         {!! Form::submit('予約変更', ['class' => 'btn btn-primary']) !!}
                                          {!! Form::close() !!}
                                         </div>
                                     </div>
@@ -26,19 +31,24 @@
                          @if (!Auth::check())     
                                 @foreach($data as $item)
                                     <div class="row py-2 border-bottom text-center">
-                                       <div class="col-sm-4">
-                                           <p>{{ $item->date }}</p>
-                                      </div>
-                                      <div class="col-sm-4">
-                                          {{ $item->time }}時に予約されています。
-                                      </div>
                                         <div class="col-sm-4">
-                                         {!! Form::model($item, ['route' => ['yoyaku-delete', $item->id ], 'method' => 'delete']) !!}
-                                         {!! Form::submit('予約取り消し', ['class' => 'btn btn-danger']) !!}
-                                         {!! Form::close() !!}
+                                           <p>{{ $item->date }}</p>
+                                        </div>
+                                        <div class="col-sm-4">
+                                           {{ $item->time }}時に予約されています。
+                                        </div>
+                                        <div class="col-sm-2">
+                                           {!! Form::model($item, ['route' => ['yoyaku-delete', $item->id ], 'method' => 'delete']) !!}
+                                           {!! Form::submit('予約取り消し', ['class' => 'btn btn-danger']) !!}
+                                           {!! Form::close() !!}
+                                        </div>
+                                    
+                                        <div class="col-sm-2">
+                                           {!! Form::model($item, ['route' => ['yoyaku-edit', $item->id ], 'method' => 'get']) !!}
+                                           {!! Form::submit('予約変更', ['class' => 'btn btn-primary']) !!}
+                                           {!! Form::close() !!}
                                         </div>
                                     </div>
-                                     
                                 @endforeach
                           @endif 
                         <button onclick="history.back()" class="return btn-primary">戻る</button> 

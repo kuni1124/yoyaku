@@ -7,8 +7,9 @@ use App\User;
 class Yoyaku extends Model
 {
     protected $table = 'yoyakus';
+   
     protected $fillable = [
-        'name','tel',
+        'name','tel','date','time'
     ];
     public function user()
     {

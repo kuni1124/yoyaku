@@ -4,7 +4,19 @@
 @section('content')
 
 <div class="test">
-    
+<div class="katetory">
+        
+            {!! Form::model($yoyakus, ['route' => 'staff-index']) !!}
+                   >
+                    {!! Form::date('date', $yoyakus,null, ['class' => 'form-control']) !!}
+                    {!! Form::label('date', 'カテゴリ') !!} 
+               
+
+                {!! Form::submit('検索', ['class' => 'btn btn-primary']) !!}
+
+            {!! Form::close() !!}
+       
+    </div>
 　　　　　
       @foreach($yoyakus as $yoyaku)
      <div class="staff-delete">

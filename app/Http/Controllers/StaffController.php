@@ -9,9 +9,19 @@ use App\User;
 use Carbon\Carbon;
 class StaffController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
+        $yoyaku_date = $request->input('date');  
+        
        
-        $yoyakus = Yoyaku::all();
+        if ($yoyaku_date){
+            $yoyakus = Yoyaku::where('date',$yoyaku_date)->get();
+           
+            
+        } else {
+            $yoyakus = Yoyaku::all();
+           
+        }
+        
         return view('staff.index', [
             'yoyakus' => $yoyakus,
          ]);

@@ -11,8 +11,8 @@ class YoyakusController extends Controller
   
 
     public function index()
-    {
-
+    { 
+    
         $yoyakus= Yoyaku::all();
         $user = Auth::user();
         return view('yoyakus.index', [
@@ -83,34 +83,53 @@ class YoyakusController extends Controller
         
     }
     // putまたはpatchでmessages/（任意のid）にアクセスされた場合の「更新処理」
-    public function update(Request $request, $id)
-    {
-        // $randam = Dai::findOrFail($id);
-        // $shushoku = Shushoku::findOrFail($request->shushoku_id);
-        // $randam->bunrui = $shushoku->bunrui;
-        // $randam->kakaku = $shushoku->kakaku;
-        // $randam->name = $shushoku->name;
-        // $randam->genka = $shushoku->genka;
-
-        // $randam->save();
-        // return redirect('/randam-index')->with('flash_message', 'PUT!');
+    public function edit($id)
+    {    
+         $yoyaku = Yoyaku::findOrFail($id);
+         $user = Auth::user();
+         
+         return view('yoyakus.edit', [
+            'yoyaku' => $yoyaku,
+            'user' => $user,
+        ]);
+        
     }
 
-    
-
-
-    public function update3(Request $request, $id)
-    {
-        // $randam3 = Shou::findOrFail($id);
-        // $sirumono = Sirumono::findOrFail($request->sirumono_id);
-        // $randam3->bunrui = $sirumono->bunrui;
-        // $randam3->kakaku = $sirumono->kakaku;
-        // $randam3->name = $sirumono->name;
+    public function editb(Request $request,$id)
+    {    
+         $yoyaku = Yoyaku::findOrFail($id);
+         $date = $request->date;
+         
+         return view('yoyakus.editb', [
+            'yoyaku' => $yoyaku,
+            'date' => $date,
+        ]);
         
-        // $randam3->genka = $sirumono->genka;
+    }
 
-        // $randam3->save();
-        // return redirect('/randam-index')->with('flash_message', 'PUT!');
+
+    public function update(Request $request, $id)
+    {   $user = Auth::user();
+        $sakuzyo = Yoyaku::findOrFail($id);
+        $yoyaku = new Yoyaku;
+        
+        $sakuzyo->delete();
+        
+       $yoyaku->id = $request->id;
+       $yoyaku->time = $request->time;
+       $yoyaku->date = $request->date;
+       
+       if($user){
+             $yoyaku->tel = $user->tel;
+             $yoyaku->name = $user->name;
+             $yoyaku->user_id = $user->id;
+       }elseif($request->time == "" or $request->tel == "" or $request->name == ""){
+            return view('error.time');
+       }else{
+             $yoyaku->tel = $request->tel;
+             $yoyaku->name = $request->name;
+       }
+       $yoyaku->save();
     }
 
 
