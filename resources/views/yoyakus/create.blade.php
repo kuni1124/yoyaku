@@ -12,7 +12,7 @@
     @csrf
         <div class="left">
                 <input type="hidden" name="date" value="{{$date}}"><p>{{$date}}日</p><br/>
-                <input type="hidden" name="id"><br/>
+                <input type="hidden" name="id" value="id"><br/>
                 @if(!$sumitimes->contains('10'))
                 <input type="radio" name="time" value="10" class="height">     10:00~11:00<br/>
                 @endif
