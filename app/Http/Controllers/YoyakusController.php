@@ -50,7 +50,7 @@ class YoyakusController extends Controller
     { 
        $user = Auth::user();
        $yoyaku = new Yoyaku;
-       $yoyaku->id = $request->id;
+       
        $yoyaku->time = $request->time;
        $yoyaku->date = $request->date;
        
