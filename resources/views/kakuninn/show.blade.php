@@ -13,15 +13,16 @@
                                           {{ $yoyaku->time }}時に予約されています。
                                        </div>
                                        <div class="col-sm-2">
+                                           {!! Form::model($yoyaku, ['route' => ['yoyaku-edit', $yoyaku->id ], 'method' => 'get']) !!}
+                                           {!! Form::submit('予約変更', ['class' => 'btn btn-primary']) !!}
+                                           {!! Form::close() !!}
+                                        </div>
+                                       <div class="col-sm-2">
                                          {!! Form::model($yoyaku, ['route' => ['yoyaku-delete', $yoyaku->id ], 'method' => 'delete']) !!}
                                          {!! Form::submit('予約取り消し', ['class' => 'btn btn-danger']) !!}
                                          {!! Form::close() !!}
                                         </div>
-                                        <div class="col-sm-2">
-                                         {!! Form::model($yoyaku, ['route' => ['yoyaku-eidt', $yoyaku->id ], 'method' => 'get']) !!}
-                                         {!! Form::submit('予約変更', ['class' => 'btn btn-primary']) !!}
-                                         {!! Form::close() !!}
-                                        </div>
+                                        
                                     </div>
                                         
                                  @endforeach

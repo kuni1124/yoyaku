@@ -1,17 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="container">
 <div class="image">
-    <img src="image/istockphoto-826389662-612x612.jpeg" >
-</div>
+    <img src="../image/istockphoto-826389662-612x612.jpeg" >
+</div> 
 <div class="title">
 <h2>時間を選択してください</h2>
 <div>
 
-    <form action="yoyaku.update" method="post">
-    @csrf
-        <div class="left">
-                <input type="hidden" name="id" value="{{$yoyaku->id}}"><br/>
+    
+   
+    <div class="row">
+        <div class="col-8">
+            {!! Form::model($yoyaku, ['route' => ['yoyaku-update', $yoyaku->id], 'method' => 'post']) !!}
+
                 <input type="hidden" name="date" value="{{$date}}"><p>{{$date}}日</p><br/>
                 @if(!$sumitimes->contains('10'))
                 <input type="radio" name="time" value="10" class="height">     10:00~11:00<br/>
@@ -25,7 +28,9 @@
                 @if(!$sumitimes->contains('14'))
                 <input type="radio" name="time" value="14" class="height">     14:00~15:00<br/>
                 @endif
-        </div>
+
+            
+    </div>
     @if (!Auth::check())
         <div class="right" >
             名前
@@ -34,19 +39,31 @@
              <input type="text" name="tel"  ><br/>
         </div>
     @endif
-        <input type="submit" value="予約する" class="btn btn-primary">  
-    </form>
-            
+    {!! Form::submit('変更', ['class' => 'btn btn-primary']) !!}
+
+{!! Form::close() !!}
+  </div>
+ </div>           
     
 @endsection
 <style>
+
 .image img{
     position: relative;
-    width:125%;
+    width:100%;
     
 }
+
+.row{
+    position:absolute;
+    top:30%;
+    left:30%;
+    width:150%;
+    font-size:180%;
+}
 .height{
-    margin-top:30%;
+    margin-top:5%;
+    
 }
 .title h2{
     position:absolute;
@@ -74,8 +91,8 @@
 }
 .btn{
     position:absolute;
-    top:60%;
-    left:50%;
+    top:85%;
+    left:13%;
 }
 
 
@@ -113,6 +130,12 @@
     position:absolute;
     top:580px!important;
     left:30%!important;
+}
+.col-8{
+    position:absolute!important;
+    top:150px!important;
+    left:100px!important;
+    font-size:120%;
 }
 }
 </style>

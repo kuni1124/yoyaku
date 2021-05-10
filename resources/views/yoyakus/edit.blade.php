@@ -19,7 +19,7 @@
 	<input type="date" name="date" class=" btn-a">
 </div>
 
-{!! Form::submit('入力', ['class' => 'btn7 btn-primary']) !!}
+{!! Form::submit('入力', ['class' => 'btn1 btn-primary']) !!}
 
 {!! Form::close() !!}
 @endsection
@@ -58,7 +58,7 @@
 .btn1{
 	position:absolute;
     top:75%!important;
-    left: 70%!important;
+    left: 40%!important;
 	height:6%!important;
 	width:60px!important;
 }
@@ -99,7 +99,7 @@
 .btn1{
 	position:absolute;
     top:65%;
-    left:60%;
+    left:45%;
 	height:5%;
 	width:5%;
 }

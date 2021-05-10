@@ -74,8 +74,11 @@ class YoyakusController extends Controller
     
     public function destroy($id)
     {    
+        //  $user = Auth::user();
          $yoyaku = Yoyaku::findOrFail($id);
-          
+        //  if($user->id != $yoyaku->user_id){
+               
+        //  }
          $yoyaku->delete();
          return view('tuuti.index2', [
             
@@ -99,10 +102,12 @@ class YoyakusController extends Controller
     {    
          $yoyaku = Yoyaku::findOrFail($id);
          $date = $request->date;
+         $sumitimes = Yoyaku::where('date','=',$request->date)->get()->pluck('time');
          
          return view('yoyakus.editb', [
             'yoyaku' => $yoyaku,
             'date' => $date,
+            'sumitimes' => $sumitimes,
         ]);
         
     }
@@ -110,26 +115,27 @@ class YoyakusController extends Controller
 
     public function update(Request $request, $id)
     {   $user = Auth::user();
-        $sakuzyo = Yoyaku::findOrFail($id);
-        $yoyaku = new Yoyaku;
+        $yoyaku = Yoyaku::findOrFail($id);
         
-        $sakuzyo->delete();
         
-       $yoyaku->id = $request->id;
+       
        $yoyaku->time = $request->time;
        $yoyaku->date = $request->date;
        
        if($user){
              $yoyaku->tel = $user->tel;
              $yoyaku->name = $user->name;
-             $yoyaku->user_id = $user->id;
+             
        }elseif($request->time == "" or $request->tel == "" or $request->name == ""){
             return view('error.time');
        }else{
              $yoyaku->tel = $request->tel;
              $yoyaku->name = $request->name;
        }
-       $yoyaku->save();
+             $yoyaku->date = $request->date;
+             $yoyaku->time = $request->time; 
+             $yoyaku->save();
+       return redirect('/tuuti')->with('flash_message', 'STORE!');
     }
 
 

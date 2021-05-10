@@ -7,7 +7,7 @@
 <div class="katetory">
         
             {!! Form::model($yoyakus, ['route' => 'staff-index']) !!}
-                   >
+                   
                     {!! Form::date('date', $yoyakus,null, ['class' => 'form-control']) !!}
                     {!! Form::label('date', 'カテゴリ') !!} 
                
