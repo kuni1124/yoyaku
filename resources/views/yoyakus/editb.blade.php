@@ -30,15 +30,16 @@
                 @endif
 
             
-    </div>
+    
     @if (!Auth::check())
         <div class="right" >
             名前
              <input type="text" name="name" class="name"><br/>
             電話番号
-             <input type="text" name="tel"  ><br/>
+             <input type="text" name="tel"  class="name2"><br/>
         </div>
     @endif
+    </div>
     {!! Form::submit('変更', ['class' => 'btn btn-primary']) !!}
 
 {!! Form::close() !!}
@@ -80,8 +81,9 @@
 
 .right{
     position:absolute;
-    top:32%;
-    left:50%;
+    top:15%;
+    left:20%;
+    font-size:80%;
    
 }
 .name{
@@ -92,7 +94,7 @@
 .btn{
     position:absolute;
     top:85%;
-    left:13%;
+    left:20%;
 }
 
 
@@ -102,7 +104,7 @@
 /* 768pxまでの幅の場合に適応される */
 .image img{
     position: relative;
-    width:125%;
+    width:100%;
     height:650px;
 }
 
@@ -112,29 +114,28 @@
     left:0%!important;
 	width:300px;
 }
-.left{
-    position:absolute!important;
-    top:100px!important;
-    left:20%!important;
-}
-.left input{
-    margin-top:30px!important;
-}
+
 .right{
     
     position:absolute!important;
-    top:450px!important;
-    left:3%!important;
+    top:380px!important;
+    left:1px!important;
+    margin-left:0px!important;
+    font-size:50%;
+    width:200px;
+}
+.name2{
+    margin-left:25px!important;
 }
 .btn{
     position:absolute;
-    top:580px!important;
-    left:30%!important;
+    top:680px!important;
+    left:20%!important;
 }
 .col-8{
     position:absolute!important;
-    top:150px!important;
-    left:100px!important;
+    top:120px!important;
+    
     font-size:120%;
 }
 }

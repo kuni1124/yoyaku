@@ -55,6 +55,8 @@ class YoyakusController extends Controller
        $yoyaku->date = $request->date;
        
        if($user){
+        if($request->time == "" ){
+            return view('error.time');}
              $yoyaku->tel = $user->tel;
              $yoyaku->name = $user->name;
              $yoyaku->user_id = $user->id;
@@ -99,7 +101,7 @@ class YoyakusController extends Controller
     }
 
     public function editb(Request $request,$id)
-    {    
+    {    $user = Auth::user();
          $yoyaku = Yoyaku::findOrFail($id);
          $date = $request->date;
          $sumitimes = Yoyaku::where('date','=',$request->date)->get()->pluck('time');
@@ -108,6 +110,7 @@ class YoyakusController extends Controller
             'yoyaku' => $yoyaku,
             'date' => $date,
             'sumitimes' => $sumitimes,
+            'user' => $user,
         ]);
         
     }

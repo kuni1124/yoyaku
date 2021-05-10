@@ -40,6 +40,7 @@
 @media screen and (max-width: 768px) {
 /* 768pxまでの幅の場合に適応される */
  .image img{
+        width:100%!important;
         height:600px!important;
     }
 }

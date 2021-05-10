@@ -84,7 +84,7 @@
 /* 768pxまでの幅の場合に適応される */
 .image img{
     position: relative;
-    width:125%;
+    width:100%;
     height:650px;
 }
 

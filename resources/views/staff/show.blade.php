@@ -14,9 +14,7 @@
                                        <div class="col-sm-4">
                                           {{ $user->text  }}
                                        </div>
-                                       @foreach($user->yoyakus as $yoyaku)
-                                       {{$yoyaku->date}} 
-                                       @endforeach
+                                       
                                        <div class="col-sm-1">
                                          {!! Form::model($user, ['route' => ['staff-edit', $user->id ], 'method' => 'get']) !!}
                                          {!! Form::submit('変更', ['class' => 'btn btn-primary']) !!}
