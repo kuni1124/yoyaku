@@ -37,20 +37,28 @@
     
 </html>
 <style>
+
 @media screen and (max-width: 768px) {
 /* 768pxまでの幅の場合に適応される */
  .image img{
         width:100%!important;
         height:600px!important;
     }
+    .text h2{
+  position:absolute;
+  top:20%;
+  left:3%;
+  
+}  
 }
 .image img{
-  width:130%;
+  width:125%!important;
   position: relative;
 }
 .text h2{
   position:absolute;
   top:20%;
-  left:7%;
+  left:3%;
+  
 }
 </style>

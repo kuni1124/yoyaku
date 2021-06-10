@@ -27,10 +27,10 @@
         </div>
     @if (!Auth::check())
         <div class="right" >
-            名前
+            名前(フルネームで入力してください)<br/>
              <input type="text" name="name" class="name"><br/>
-            電話番号
-             <input type="text" name="tel"  ><br/>
+            電話番号（半角数字　000-1111-2222 (半角ハイフォン- 付き）番号は携帯番号も可能)<br/>
+             <input type="text" name="tel"  >
         </div>
     @endif
         <input type="submit" value="予約する" class="btn btn-primary">  
@@ -67,10 +67,11 @@
    
 }
 .name{
-    margin-left:13%;
+    
     margin-bottom:10%;
     
 }
+
 .btn{
     position:absolute;
     top:60%;
@@ -110,7 +111,7 @@
 }
 .btn{
     position:absolute;
-    top:580px!important;
+    top:700px!important;
     left:30%!important;
 }
 }
